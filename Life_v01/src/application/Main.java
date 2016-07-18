@@ -64,7 +64,7 @@ public class Main extends Application {
 
     
 		//try {
-			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
+			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("/view/MainStarter.fxml"));
 			//root.getChildren().add(toolBar);
 			root.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				//root.setOnCloseRequest(e -> Platform.exit());	 
