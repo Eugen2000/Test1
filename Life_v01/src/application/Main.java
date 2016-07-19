@@ -65,6 +65,7 @@ public class Main extends Application {
     
 		//try {
 			StackPane root = (StackPane)FXMLLoader.load(getClass().getResource("/view/MainStarter.fxml"));
+			//primaryStage.StackPane root1 = (StackPane)FXMLLoader.load(getClass().getResource("/view/MainStarter.fxml"));
 			//root.getChildren().add(toolBar);
 			root.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				//root.setOnCloseRequest(e -> Platform.exit());	 
@@ -74,6 +75,7 @@ public class Main extends Application {
 	                if(button==MouseButton.PRIMARY){
 	                	//System.out.println("1");
 	                    //label.setText("PRIMARY button clicked");
+	                	
 	                }else if(button==MouseButton.SECONDARY){
 	                    //label.setText("SECONDARY button clicked");
 	                	//System.out.println("2");
@@ -88,6 +90,8 @@ public class Main extends Application {
 */
 	                    timeline.setOnFinished((ae) -> System.exit(0)); 
 	                    timeline.play();
+	                    //primaryStage.setScene(new Scene(root,900,900));
+	                    primaryStage.show();
 	                	//Platform.exit();
 	                	//primaryStage.close();
 	                }else if(button==MouseButton.MIDDLE){
@@ -97,6 +101,7 @@ public class Main extends Application {
 	        });			
 						
 	        Scene scene = new Scene(root,900,900);
+	        //Scene scene1 = new Scene(root1,900,900);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);

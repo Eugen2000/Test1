@@ -2,7 +2,4 @@
 
 <?import javafx.scene.layout.StackPane?>
 
-
-<StackPane id="pane" stylesheets="@MainStarter.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStarterController">
-	<!-- TODO Add Nodes -->
-</StackPane>
+<StackPane id="pane" stylesheets="@MainStarter.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainStarterController" />
