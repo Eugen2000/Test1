@@ -31,7 +31,7 @@ public class SampleController {
 	}
 	
 	private double curX=0,curY=0;
-	private double dotSize=30;
+	private double dotSize=10;
 	private int numDotX;
 	private int numDotY;
 	class myDot{
@@ -41,25 +41,40 @@ public class SampleController {
 		private boolean exists=false;
 	}
 	private myDot[][] myDots;
-	private myDot testDot;
+	//private myDot testDot;
 	//private double curX=0,curY=0;
-		private void ShowDotG(double x, double y,Color c) {
+	
+	
+	private void ShowDotG(double x, double y,Color c) {
 		// TODO Auto-generated method stub
 		//double dotSize=20;
 
-		double dotX,dotY;
+		//double dotX,dotY;
 		CanvFX.getGraphicsContext2D().setFill(c);
-		System.out.printf("mouse %g %g\n",x,y);
-		System.out.printf("curre %g %g\n",curX,curY);
-
-		if(Math.abs(curX-x)>dotSize & Math.abs(curY-y)>dotSize){
-			System.out.printf("------------------------------- %g %g",x,y);
-			curX=x;
-			curY=y;
-			//CanvFX.getGraphicsContext2D().fillRect(x, y, dotSize, dotSize);
+		curX=(int)(x/dotSize);
+		curY=(int)(y/dotSize);
+		CanvFX.getGraphicsContext2D().fillRect(curX*dotSize, curY*dotSize, dotSize, dotSize);
+		myDots[(int)curX][(int)curY].exists=true;
+		
+		
+/*
+ 		boolean delta=Math.abs(curX-x)>dotSize | Math.abs(curY-y)>dotSize;
+		double deltaX=Math.abs(curX-x);
+		double deltaY=Math.abs(curY-y);
+		System.out.printf("mouse  (%g %g) curre ( %g %g)  ( %g %g) %g %b\n",x,y,curX,curY, deltaX, deltaY,dotSize, delta);
+		if(! myDots[(int)(x/dotSize)][(int)(x/dotSize)].exists)
+		{
+			CanvFX.getGraphicsContext2D().fillRect(curX, curY, dotSize, dotSize);			
+		}
+		if(Math.abs(curX-x)>dotSize | Math.abs(curY-y)>dotSize){
+			System.out.printf("------------------------------- %g %g \n",x,y);
+			curX=((int)(x/dotSize))*dotSize;
+			curY=((int)(y/dotSize))*dotSize;
+			CanvFX.getGraphicsContext2D().fillRect(curX, curY, dotSize, dotSize);
 		}
 		//CanvFX.getGraphicsContext2D().clearRect(0, 0, CanvFX.getWidth(), CanvFX.getHeight());
-	}
+*/	
+}
 	// Event Listener on ImageView.onMouseClicked
 	@FXML
 	public void onMonkey(MouseEvent event) {

@@ -23,7 +23,7 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
-		
+	 public Stage mainStage;	
 	 class WindowButtons extends HBox {
 
 	        public WindowButtons() {
@@ -45,7 +45,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setFullScreen(true);
-		 //primaryStage.setOpacity(0.5);
+		
+		//primaryStage.setOpacity(0.5);
 
 /*        BorderPane borderPane = new BorderPane();
         borderPane.setStyle("-fx-background-color: green;");
