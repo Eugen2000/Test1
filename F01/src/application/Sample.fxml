@@ -29,6 +29,16 @@
                         <Font size="34.0" />
                      </font>
                   </Button>
+                  <Button fx:id="but1" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut1" text="Button1">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="but2" layoutX="224.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut2" text="Button2">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
