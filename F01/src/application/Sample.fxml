@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="900.0" prefWidth="900.0" style="-fx-background-color: transparent; -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="700.0" layoutX="7.0" layoutY="14.0" onMouseClicked="#onMonkey" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@../Images/photo.png" />
+         </image></ImageView>
+      <Group AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #00FFCC;">
+               <children>
+                  <Canvas fx:id="CanvFX" height="800.0" onMouseDragged="#onMouseDragged" width="800.0" />
+               </children>
+            </Pane>
+            <Pane layoutY="840.0" prefHeight="120.0" prefWidth="800.0" style="-fx-background-color: #F0CC00;">
+               <children>
+                  <Button fx:id="but" layoutX="627.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut" text="Button">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
