@@ -65,26 +65,32 @@ public class SampleController {
 
 	private void surroundtDotNeighbors(int x,int y){
 		System.out.printf("---------------- %d %d ---------------\n",x,y);
-		for(int ik=1;ik<=3;ik++){
-			for(int jk=1;jk<=3;jk++){
-				if(ik*jk!=4){
+		for(int ik=0;ik<=2;ik++){
+			for(int jk=0;jk<=2;jk++){
+				if(ik*jk!=1){
 					//if(x==3 & y==3){
 						System.out.printf("1: ( %d;%d )( %d;%d )=%d\n ",
 								jk,
 								ik,
-								myDots[x-2+ik][x-2+jk].dotX,
-								myDots[x-2+ik][x-2+jk].dotY,
-								myDots[x-2+ik][x-2+jk].neighbors);
+								myDots[x-1+ik][y-1+jk].dotX,
+								myDots[x-1+ik][y-1+jk].dotY,
+								myDots[x-1+ik][y-1+jk].neighbors);
 					//}
 					
-					myDots[x-2+ik][x-2+jk].neighbors=myDots[x-2+ik][x-2+jk].neighbors+1;
-					//if(x==3 & y==3){
+					myDots[x-1+ik][y-1+jk].neighbors=myDots[x-1+ik][y-1+jk].neighbors+1;
+					CanvFX.getGraphicsContext2D().setFill(Color.ALICEBLUE);
+					CanvFX.getGraphicsContext2D().fillRect(
+							getAbsoluteDotPosX(x-1+ik),
+							getAbsoluteDotPosY(y-1+jk),
+							dotSize,
+							dotSize);
+//if(x==3 & y==3){
 						System.out.printf("2: ( %d;%d )( %d;%d )=%d\n ",
 								jk,
 								ik,
-								myDots[x-2+ik][x-2+jk].dotX,
-								myDots[x-2+ik][x-2+jk].dotY,
-								myDots[x-2+ik][x-2+jk].neighbors);
+								myDots[x-1+ik][y-1+jk].dotX,
+								myDots[x-1+ik][y-1+jk].dotY,
+								myDots[x-1+ik][x-1+jk].neighbors);
 					//}
 				}												
 			}
@@ -97,10 +103,9 @@ public class SampleController {
 				myDots[i][j].neighbors=0;
 				myDots[i][j].dotX=i;
 				myDots[i][j].dotY=j;
-				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
-						getAbsoluteDotPosX(i)+dotSize/2-5,
-						getAbsoluteDotPosY(j)+dotSize/2);
-
+				//CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
+				//		getAbsoluteDotPosX(i)+dotSize/2-5,
+				//		getAbsoluteDotPosY(j)+dotSize/2);
 			}
 		}	
 		//myDots[3][3].exists=true;
@@ -118,6 +123,7 @@ public class SampleController {
 		for(int i=0;i<numDotX;i++){
 			for(int j=0;j<numDotY;j++){
 				if(myDots[i][j].exists){
+					System.out.printf("-------------------------ShowGen ( %d;%d ) -------------------\n",i,j);
 					//CanvFX.getGraphicsContext2D().setFill(defaultDotBorderColor);
 					//CanvFX.getGraphicsContext2D().fillRect(i*dotSize,j*dotSize,dotSize,dotSize);
 					CanvFX.getGraphicsContext2D().setFill(myDots[i][j].dotColor);
