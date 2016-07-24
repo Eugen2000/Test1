@@ -38,20 +38,20 @@ public class SampleController {
 	class myDot{
 		private int dotX,dotY;
 		private Color dotColor=Color.TRANSPARENT;
-		private int neighbors=-1;
+		private int neighbors;
 		private boolean exists=false;
 	}
 	
 	private int dotX,dotY;
 	private double curX=0,curY=0;
-	private double dotSize=30;
+	private double dotSize=80;
 	private double dotSpace=10;
 	private Color  defaultDotBodyColor=Color.RED;
 	private Color  defaultDotBorderColor=Color.BLACK;
 	
 	private int numDotX;
 	private int numDotY;
-	private myDot[][] myDots;
+	private myDot myDots[][];
 	//private myDot testDot;
 	//private double curX=0,curY=0;
 	
@@ -64,10 +64,28 @@ public class SampleController {
 	}
 
 	private void surroundtDotNeighbors(int x,int y){
+		System.out.printf("---------------- %d %d ---------------\n",x,y);
 		for(int ik=1;ik<=3;ik++){
 			for(int jk=1;jk<=3;jk++){
-				if(ik!=jk){
-					myDots[x-2+ik][x-2+jk].neighbors++;
+				if(ik*jk!=4){
+					//if(x==3 & y==3){
+						System.out.printf("1: ( %d;%d )( %d;%d )=%d\n ",
+								jk,
+								ik,
+								myDots[x-2+ik][x-2+jk].dotX,
+								myDots[x-2+ik][x-2+jk].dotY,
+								myDots[x-2+ik][x-2+jk].neighbors);
+					//}
+					
+					myDots[x-2+ik][x-2+jk].neighbors=myDots[x-2+ik][x-2+jk].neighbors+1;
+					//if(x==3 & y==3){
+						System.out.printf("2: ( %d;%d )( %d;%d )=%d\n ",
+								jk,
+								ik,
+								myDots[x-2+ik][x-2+jk].dotX,
+								myDots[x-2+ik][x-2+jk].dotY,
+								myDots[x-2+ik][x-2+jk].neighbors);
+					//}
 				}												
 			}
 		}
@@ -77,24 +95,22 @@ public class SampleController {
 		for(int i=0;i<numDotX;i++){
 			for(int j=0;j<numDotY;j++){
 				myDots[i][j].neighbors=0;
+				myDots[i][j].dotX=i;
+				myDots[i][j].dotY=j;
 				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
 						getAbsoluteDotPosX(i)+dotSize/2-5,
 						getAbsoluteDotPosY(j)+dotSize/2);
 
 			}
 		}	
-		
+		//myDots[3][3].exists=true;
 		for(int i=1;i<numDotX-1;i++){
 			for(int j=1;j<numDotY-1;j++){
-				surroundtDotNeighbors(i,j);
-//				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
-//						getAbsoluteDotPosX(i)+dotSize/2-5,
-//						getAbsoluteDotPosY(j)+dotSize/2);
+				if(myDots[i][j].exists)	surroundtDotNeighbors(i,j);
 			}
 		}
 		
 	}
-		
 	
 	private void ShowGeneration(Color c){
 		//CanvFX.getGraphicsContext2D().setFill(c);
@@ -110,11 +126,12 @@ public class SampleController {
 							getAbsoluteDotPosY(j),
 							dotSize,
 							dotSize);
-					CanvFX.getGraphicsContext2D().setFont(Font.font(14));
-					CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
+				 }	
+				CanvFX.getGraphicsContext2D().setFont(Font.font(20));
+				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
 							getAbsoluteDotPosX(i)+dotSize/2-5,
 							getAbsoluteDotPosY(j)+dotSize/2);
-				}
+				
 			}
 		}
 	}
