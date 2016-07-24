@@ -8,6 +8,7 @@ import javafx.scene.input.MouseDragEvent;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.canvas.Canvas;
 
 import javafx.scene.input.DragEvent;
@@ -34,26 +35,51 @@ public class SampleController {
 		}	
 	}
 	
-	private double curX=0,curY=0;
-	private double dotSize=10;
-	private int numDotX;
-	private int numDotY;
 	class myDot{
-		private double dotX,dotY;
-		private Color c=Color.TRANSPARENT;
+		private int dotX,dotY;
+		private Color dotColor=Color.TRANSPARENT;
 		private int neighbors=-1;
 		private boolean exists=false;
 	}
+	
+	private int dotX,dotY;
+	private double curX=0,curY=0;
+	private double dotSize=30;
+	private double dotSpace=10;
+	private Color  defaultDotBodyColor=Color.RED;
+	private Color  defaultDotBorderColor=Color.BLACK;
+	
+	private int numDotX;
+	private int numDotY;
 	private myDot[][] myDots;
 	//private myDot testDot;
 	//private double curX=0,curY=0;
 	
+	private int getAbsoluteDotPosX(int x){
+		return x*(int)(dotSize+dotSpace);
+	}
+	
+	private int getAbsoluteDotPosY(int y){
+		return y*(int)(dotSize+dotSpace);
+	}
+
 	private void ShowGeneration(Color c){
-		CanvFX.getGraphicsContext2D().setFill(c);
+		//CanvFX.getGraphicsContext2D().setFill(c);
 		for(int i=0;i<numDotX;i++){
 			for(int j=0;j<numDotY;j++){
 				if(myDots[i][j].exists){
-					CanvFX.getGraphicsContext2D().fillRect(i*dotSize,j*dotSize,dotSize,dotSize);
+					//CanvFX.getGraphicsContext2D().setFill(defaultDotBorderColor);
+					//CanvFX.getGraphicsContext2D().fillRect(i*dotSize,j*dotSize,dotSize,dotSize);
+					CanvFX.getGraphicsContext2D().setFill(myDots[i][j].dotColor);
+					CanvFX.getGraphicsContext2D().fillRect(
+							getAbsoluteDotPosX(i),
+							getAbsoluteDotPosY(j),
+							dotSize,
+							dotSize);
+					CanvFX.getGraphicsContext2D().setFont(Font.font(14));
+					CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
+							getAbsoluteDotPosX(i)+dotSize/2-5,
+							getAbsoluteDotPosY(j)+dotSize/2);
 				}
 			}
 		}
@@ -64,7 +90,11 @@ public class SampleController {
 		for(int i=0;i<numDotX;i++){
 			for(int j=0;j<numDotY;j++){
 				if(myDots[i][j].exists){
-					CanvFX.getGraphicsContext2D().clearRect(i*dotSize,j*dotSize,dotSize,dotSize);
+					CanvFX.getGraphicsContext2D().clearRect(
+							getAbsoluteDotPosX(i),
+							getAbsoluteDotPosY(j),
+							dotSize,
+							dotSize);
 	//				CanvFX.getGraphicsContext2D().clearRect(0, 0, CanvFX.getWidth(), CanvFX.getHeight());
 					myDots[i][j].exists=false;
 				}
@@ -74,16 +104,20 @@ public class SampleController {
 
 	private void ShowDotG(double x, double y,Color c) {
 			// TODO Auto-generated method stub
-			//double dotSize=20;
-	
-			//double dotX,dotY;
 			CanvFX.getGraphicsContext2D().setFill(c);
-			curX=(int)(x/dotSize);
-			curY=(int)(y/dotSize);
-			CanvFX.getGraphicsContext2D().fillRect(curX*dotSize, curY*dotSize, dotSize, dotSize);
-			myDots[(int)curX][(int)curY].exists=true;
-			
-			
+			dotX=(int)(x/(dotSize+dotSpace));
+			dotY=(int)(y/(dotSize+dotSpace));
+			CanvFX.getGraphicsContext2D().fillRect(
+					getAbsoluteDotPosX(dotX),
+					getAbsoluteDotPosY(dotY),
+					dotSize,
+					dotSize);
+			myDots[dotX][dotY].exists=true;
+			myDots[dotX][dotY].dotX=dotX;
+			myDots[dotX][dotY].dotY=dotY;
+			myDots[dotX][dotY].neighbors=-1;
+			myDots[dotX][dotY].dotColor=this.defaultDotBodyColor;
+	
 	/*
 	 		boolean delta=Math.abs(curX-x)>dotSize | Math.abs(curY-y)>dotSize;
 			double deltaX=Math.abs(curX-x);
@@ -141,8 +175,8 @@ public class SampleController {
     public void initialize() {
 			System.out.println("init");
 			numDotX=(int)CanvFX.getWidth();
-			numDotX=(int) (((int)CanvFX.getWidth())/dotSize);
-			numDotY=(int) (((int)CanvFX.getHeight())/dotSize);
+			numDotX=(int) (((int)CanvFX.getWidth())/(dotSize+dotSpace));
+			numDotY=(int) (((int)CanvFX.getHeight())/(dotSize+dotSpace));
 			myDots=new myDot[numDotX][numDotY];
 			for(int i=0;i<numDotX;i++){
 				for(int j=0;j<numDotY;j++){
