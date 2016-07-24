@@ -63,8 +63,42 @@ public class SampleController {
 		return y*(int)(dotSize+dotSpace);
 	}
 
+	private void surroundtDotNeighbors(int x,int y){
+		for(int ik=1;ik<=3;ik++){
+			for(int jk=1;jk<=3;jk++){
+				if(ik!=jk){
+					myDots[x-2+ik][x-2+jk].neighbors++;
+				}												
+			}
+		}
+	}
+	
+	private void filltDotNeighbors(){
+		for(int i=0;i<numDotX;i++){
+			for(int j=0;j<numDotY;j++){
+				myDots[i][j].neighbors=0;
+				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
+						getAbsoluteDotPosX(i)+dotSize/2-5,
+						getAbsoluteDotPosY(j)+dotSize/2);
+
+			}
+		}	
+		
+		for(int i=1;i<numDotX-1;i++){
+			for(int j=1;j<numDotY-1;j++){
+				surroundtDotNeighbors(i,j);
+//				CanvFX.getGraphicsContext2D().strokeText(((Integer)myDots[i][j].neighbors).toString(),
+//						getAbsoluteDotPosX(i)+dotSize/2-5,
+//						getAbsoluteDotPosY(j)+dotSize/2);
+			}
+		}
+		
+	}
+		
+	
 	private void ShowGeneration(Color c){
 		//CanvFX.getGraphicsContext2D().setFill(c);
+		filltDotNeighbors();
 		for(int i=0;i<numDotX;i++){
 			for(int j=0;j<numDotY;j++){
 				if(myDots[i][j].exists){
