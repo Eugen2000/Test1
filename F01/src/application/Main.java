@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.fxml.FXMLLoader;
 
-
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
