@@ -24,17 +24,22 @@
             </Pane>
             <Pane layoutY="840.0" prefHeight="120.0" prefWidth="800.0" style="-fx-background-color: #F0CC00;">
                <children>
-                  <Button fx:id="but" layoutX="627.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut" text="Button">
+                  <Button fx:id="but" layoutX="627.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut" text="Clear">
                      <font>
                         <Font size="34.0" />
                      </font>
                   </Button>
-                  <Button fx:id="but1" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut1" text="Button1">
+                  <Button fx:id="but1" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut1" text="ShowGen">
                      <font>
                         <Font size="34.0" />
                      </font>
                   </Button>
-                  <Button fx:id="but2" layoutX="224.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut2" text="Button2">
+                  <Button fx:id="but2" layoutX="418.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut2" text="ButDelete">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="but3" layoutX="224.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onBut3" text="NextGen">
                      <font>
                         <Font size="34.0" />
                      </font>
